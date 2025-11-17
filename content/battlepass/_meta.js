@@ -17,4 +17,10 @@ export default {
             copyPage: false
         }
     },
+    tebex: {
+        title: 'Tebex Integration',
+        theme: {
+            copyPage: false
+        }
+    }
 }

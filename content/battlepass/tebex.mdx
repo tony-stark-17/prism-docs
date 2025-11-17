@@ -1,0 +1,55 @@
+import { Steps } from 'nextra/components'
+import Image from 'next/image'
+
+# Installation
+
+<div className='text-lg mt-2'
+    style={{
+        color: 'rgb(185, 198, 162)'
+    }}
+>Setting up Tebex for prism_battlepass monetization</div>
+
+## Tebex Integration Guide
+
+<Steps>
+    ### Visit [Tebex](https://www.tebex.io/) and create an account if you haven't already.
+
+    ### Navigate to the [Game Servers](https://server.tebex.io/game-servers) section using the sidebar menu in your Tebex dashboard.
+
+    ### Select the '[Connect a game server](https://server.tebex.io/game-servers/create)' option, then choose 'PLUGIN' from the available connection methods and proceed.
+
+    ### Enter your server name and choose the all packages configuration. Apply your changes.
+    <Image className='mt-7 mb-18' src='/b1tbx.png' alt='prism' width={1458} height={373} />
+
+    ### Once the setup is complete, you'll receive a secret key. Copy this key for the next step.
+    <Image className='mt-7 mb-18' src='/b2tbx.png' alt='prism' width={1459} height={634} />
+
+    ### Add the secret key to your server.cfg file alongside your existing license keys. Make sure to prefix it with ```sv_tebexSecret``` as shown in the example.
+    <Image className='mt-7 mb-18' src='/b3tbx.png' alt='prism' width={544} height={146} />
+
+    ### Return to your Tebex dashboard and access the ``packages`` menu from the sidebar.
+
+    ### Use the ``add new`` button located at the top right corner, then choose ``packages`` from the dropdown options.
+
+    ### Configure your package details including name, pricing, description, and imagery. Then locate the ``Configure what your customers should receive upon purchasing this package`` area and select ``Game Server Command``.
+
+    ### Choose the game server you've connected to Tebex from the ``Game Server`` dropdown menu.
+
+    ### Press the '`add command`' button in the bottom right corner.
+
+    ### Insert the following command into the '`Enter the command`' field.
+
+    ```txt copy
+        tebexpurchaseprismpass {transaction}
+    ```
+
+    ### Locate and click the `settings icon` positioned on the right.
+
+    ### Modify the `Require Player To Be Online` setting to 'Execute the command even if the player is offline' and confirm your changes.
+    <Image className='mt-7 mb-18' src='/b4tbx.png' alt='prism' width={1407} height={388} />
+
+    ### Setup complete! When players purchase your package, they'll receive a transaction ID that can be redeemed through the in-game redemption interface.
+
+</Steps>
+
+

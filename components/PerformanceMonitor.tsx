@@ -7,10 +7,8 @@ export function PerformanceMonitor() {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Measure page navigation performance
     const navigationStart = performance.now()
 
-    // Wait for the page to fully load
     const observer = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
         if (entry.entryType === 'navigation') {
