@@ -2,16 +2,40 @@ import { Callout } from 'nextra/components'
 
 # Ox_Lib Migration
 
-<div className='text-lg mt-2'
-    style={{
-        color: 'rgb(185, 198, 162)'
-    }}
->Seamlessly migrate from ox_lib UI components to Prism_UI with no code changes required.</div>
+<div
+  className='text-lg mt-2'
+  style={{ color: 'rgb(185, 198, 162)' }}
+>
+  Seamlessly migrate from ox_lib UI components to Prism_UI with no code changes required.
+</div>
 
+## Recommended Migration (New Method)
 
-## Add the compatibility script
+Instead of manually editing every resource’s `fxmanifest.lua`, you can now load Prism_UI centrally via `ox_lib`.  
 
-Add `@prism_uipack/init.lua` to the shared_scripts list inside your resource’s `fxmanifest.lua`.
+Add the following code **at the end of `ox_lib/init.lua`**:
+
+```lua copy
+local PRISM_RESOURCE <const> = "prism_uipack"
+if GetResourceState(PRISM_RESOURCE) == "missing" then return end
+
+local success, err = pcall(function()
+    local code = LoadResourceFile(PRISM_RESOURCE, "init.lua")
+    if code then
+        load(code)()
+    end
+end)
+
+if not success then
+    error(("Failed to load prism_uipack. Error:"):format(err))
+end
+```
+
+<Callout type="success"> This method automatically loads Prism_UI for all resources using ox_lib. You no longer need to modify every resource’s `fxmanifest.lua`. </Callout>
+
+## Old Method (Legacy)
+
+Previously, you had to add @prism_uipack/init.lua to the shared_scripts list inside each resource’s fxmanifest.lua:
 
 ```lua copy
 shared_scripts {
@@ -20,6 +44,4 @@ shared_scripts {
 }
 ```
 
-<Callout type="warning">
-  Do not add this into the `ox_lib` resource. You have to put it in every resource that is using ox_lib itself.
-</Callout>
+<Callout type="warning"> Do not add this into the `ox_lib` resource itself. It had to be added to every resource that used ox_lib. </Callout>
