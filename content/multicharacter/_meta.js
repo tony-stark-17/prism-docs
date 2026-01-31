@@ -10,5 +10,11 @@ export default {
         theme: {
             copyPage: false
         }
+    },
+    commonissues: {
+        title: 'Common Issues',
+        theme: {
+            copyPage: false
+        }
     }
 }

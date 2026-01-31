@@ -1,0 +1,36 @@
+# Common Issues
+
+<div className='text-lg mt-2'
+    style={{
+        color: 'rgb(185, 198, 162)'
+    }}
+>Common Issues that you might encounter while using the resource.</div>
+
+## Issue 1: The interior is not loading
+
+<div className='text-lg mt-2'
+    style={{
+        color: 'rgb(185, 198, 162)'
+    }}
+>
+    If the interior is not loading, make sure that you have enabled the IPL named ```sf_fixeroffice_kt1_05``` in your server. some maps/script may disable this IPL.
+</div>
+
+
+## Issue 2: The default character is spawning infront of main character on character selection in QBCore
+
+<div className='text-lg mt-2'
+    style={{
+        color: 'rgb(185, 198, 162)'
+    }}
+>
+    Replace your ``[cfx-default]\[gamemodes]\basic-gamemode\basic_client.lua`` content with the one given below
+</div>
+
+
+```lua copy name="basic_client.lua"
+AddEventHandler('onClientMapStart', function()
+  exports.spawnmanager:setAutoSpawn(false)
+  exports.spawnmanager:forceRespawn()
+end)
+```
