@@ -1,0 +1,71 @@
+# Config
+
+<div className='text-lg mt-2'
+    style={{
+        color: 'rgb(185, 198, 162)'
+    }}
+>Collection of exports, Designed for easy integration with third-party scripts.</div>
+
+## Client Exports
+
+### isSeatbeltOn
+Check if seatbelt is on.
+
+```lua copy
+local isOn = exports['prism-hudv2']:isSeatbeltOn()
+```
+
+### setSeatbelt
+Set seatbelt state.
+
+```lua copy
+---@param state boolean
+exports['prism-hudv2']:setSeatbelt(state)
+```
+
+### SetSpeedLimit
+Set speed limit.
+
+```lua copy
+---@param limit number
+exports['prism-hudv2']:SetSpeedLimit(limit)
+```
+
+### ClearSpeedLimit
+Clear speed limit.
+
+```lua copy
+exports['prism-hudv2']:ClearSpeedLimit()
+```
+
+### GetCurrentSpeedLimit
+Get current speed limit.
+
+```lua copy
+---@return number
+local limit = exports['prism-hudv2']:GetCurrentSpeedLimit()
+```
+
+### IsInSpeedZone
+Check if player is in speed zone.
+
+```lua copy
+---@return boolean
+local isInZone = exports['prism-hudv2']:IsInSpeedZone()
+```
+
+### IsHudUiHidden
+Check if HUD UI is hidden.
+
+```lua copy
+---@return boolean
+local isHidden = exports['prism-hudv2']:IsHudUiHidden()
+```
+
+### SetHudHidden
+Set HUD UI hidden state.
+
+```lua copy
+---@param state boolean
+exports['prism-hudv2']:SetHudHidden(state)
+```

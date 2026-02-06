@@ -1,0 +1,309 @@
+# Config
+
+<div className='text-lg mt-2'
+    style={{
+        color: 'rgb(185, 198, 162)'
+    }}
+>All Prism Scripts contain various editable and unobscured files containing, exports, client<br/> and server functions, configuration methods and more.</div>
+
+## Config
+
+```lua filename="config.lua" copy
+
+Config = {}
+
+Config.Debug = false
+Config.Framework = 'qbx' -- qbx or qb or esx
+Config.Profile = 'discord' -- discord or steam
+
+Config.HudSettings = {
+    command = 'hudsettings', -- Command to open the HUD settings menu
+    keyBind = 'Y' -- Keybind to open the HUD settings menu. make it false to disable
+}
+
+Config.VehicleControl = {
+    enable = true, -- Enable/disable vehicle control feature
+    command = 'vehiclecontrol', -- Command to toggle vehicle control menu
+    keyBind = 'Z' -- Keybind to toggle vehicle control menu. make it false to disable
+}
+
+Config.VehicleKeybinds = {
+    indicatorLeft = {
+        enable = true,
+        command = 'indicator_left',
+        keyBind = 'LEFT' -- Left arrow key. Set to false to disable
+    },
+    indicatorRight = {
+        enable = true,
+        command = 'indicator_right',
+        keyBind = 'RIGHT' -- Right arrow key. Set to false to disable
+    },
+    hazard = {
+        enable = true,
+        command = 'hazard_lights',
+        keyBind = 'DOWN' -- Down arrow key. Set to false to disable
+    },
+    cruiseControl = {
+        enable = true,
+        command = 'cruise_control',
+        keyBind = 'CAPITAL'
+    },
+    seatbelt = {
+        enable = true,
+        command = 'seatbelt',
+        keyBind = 'B'
+    }
+}
+
+Config.Seatbelt = {
+    Enable = true,
+    EjectCheckSpeed = 45,
+    RagdollTime = 3,
+    VehicleClasses = {0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 17, 18, 19, 20}
+}
+
+
+Config.SpeedLimits = {
+    enabled = true, -- Enable/disable speed limit zone detection
+    checkInterval = 1000, -- How often to check if player is in a zone (ms)
+    defaultLimit = 0, -- Default speed limit outside zones (0 = no limit shown)
+
+    zones = {
+        -- Legion Square / City Center
+        {
+            name = "Legion Square",
+            coords = vector3(195.0, -933.0, 30.0),
+            radius = 800.0,
+            speedLimit = 35
+        },
+        -- Vinewood
+        {
+            name = "Vinewood",
+            coords = vector3(320.0, 180.0, 103.0),
+            radius = 600.0,
+            speedLimit = 30
+        },
+        -- Airport
+        {
+            name = "Airport",
+            coords = vector3(-1037.0, -2737.0, 20.0),
+            radius = 500.0,
+            speedLimit = 25
+        },
+        -- Highway (Great Ocean Highway)
+        {
+            name = "Highway",
+            coords = vector3(-3041.5010, 242.7639, 15.3506),
+            radius = 2000.0,
+            speedLimit = 10
+        },
+    }
+}
+
+-- Default HUD Settings (colors and styles)
+-- These are used as defaults when player has no saved settings ( DONT TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING )
+Config.DefaultHudSettings = {
+    performanceMode = 'balanced',
+    speedUnit = 'mph',
+    distanceUnit = 'feet',
+    useUltrawide = false,
+    showMinimapOnFoot = true,
+    showNorthBlip = true,
+    moveCompassWhenMinimapHidden = false,
+    minimapStyle = 'squaremap',
+    showCompassOnFoot = true,
+    compassFollowsCamera = true,
+    showNearestPostal = false,
+    locationDisplayBorderRadius = 'srounded',
+    locationDisplayPrimaryColor = '#D9D9D9',
+    locationDisplayBackgroundColor = '#161616',
+    locationDisplayTextColor = '#C4C4C4',
+    statsStyle = 'style1',
+    statsColors = {
+        health = { progress = '#F98476', icon = '#F98476', background = '#F98476' },
+        armour = { progress = '#A5CDFA', icon = '#A5CDFA', background = '#A5CDFA' },
+        hunger = { progress = '#F3C08D', icon = '#F3C08D', background = '#F3C08D' },
+        thirst = { progress = '#A7EFBC', icon = '#A7EFBC', background = '#A7EFBC' },
+        stamina = { progress = '#F7FC9F', icon = '#F7FC9F', background = '#F7FC9F' },
+        oxygen = { progress = '#E484A4', icon = '#E484A4', background = '#E484A4' }
+    },
+    carBikeSpeedometerStyle = 'style1',
+    carBikeFlashSpeedLimit = true,
+    carBikeIndicatorSounds = true,
+    carBikeSpeedLimitStyle = 'us-style',
+    carBikeSpeedLimitApproachThreshold = 0.8,
+    carBikeSeatbeltWarningSound = true,
+    carBikeSeatbeltSound = true,
+    speedometerColors = {
+        style1 = {
+            colours = { rpmArc = '#BEEE11', text = '#FFFFFF' },
+            statusColours = { engine = '#F3C08D', fuel = '#E484A4' }
+        },
+        style2 = {
+            colours = { needle = '#DE3134', centerCircle = '#DDDDDD' },
+            statusColours = { fuelNeedle = '#DE3134' }
+        },
+        style3 = {
+            colours = { rpmActive = '#D9D9D9', rpmRedZone = '#FF0000', gearBox = '#D9D9D9' },
+            statusColours = { indicator = '#00FF00', cruise = '#87CEEB', headlight = '#4169E1', seatbelt = '#5BE48A' }
+        },
+        style4 = {
+            colours = { rpmGradient = '#DE3134', arcFill = '#F2F2F2', text = '#FFFFFF' },
+            statusColours = {}
+        },
+        style5 = {
+            colours = { speedNeedle = '#DE3134', rpmNeedle = '#DE3134', fuelNeedle = '#DE3134', arcGradient = '#DE3134' },
+            statusColours = { centerCircle = '#DDDDDD' }
+        },
+        style6 = {
+            colours = { text = '#DDDDDD' },
+            statusColours = { heart = '#DE3134' }
+        }
+    },
+    bicycleSpeedometerStyle = 'style6',
+    bicycleShowSpeedDisplay = true,
+    bicycleEnableBellSounds = true,
+    bicycleShowCadenceMeter = true,
+    bicycleShowHeartRateMonitor = true,
+    bicycleSpeedometerColors = {
+        style1 = {
+            colours = { rpmArc = '#BEEE11', text = '#FFFFFF' },
+            statusColours = { engine = '#F3C08D', fuel = '#E484A4' }
+        },
+        style2 = {
+            colours = { needle = '#DE3134', centerCircle = '#DDDDDD' },
+            statusColours = { fuelNeedle = '#DE3134' }
+        },
+        style3 = {
+            colours = { rpmActive = '#D9D9D9', rpmRedZone = '#FF0000', gearBox = '#D9D9D9' },
+            statusColours = { indicator = '#00FF00', cruise = '#87CEEB', headlight = '#4169E1', seatbelt = '#5BE48A' }
+        },
+        style4 = {
+            colours = { rpmGradient = '#DE3134', arcFill = '#F2F2F2', text = '#FFFFFF' },
+            statusColours = {}
+        },
+        style5 = {
+            colours = { speedNeedle = '#DE3134', rpmNeedle = '#DE3134', fuelNeedle = '#DE3134', arcGradient = '#DE3134' },
+            statusColours = { centerCircle = '#DDDDDD' }
+        },
+        style6 = {
+            colours = { text = '#DDDDDD' },
+            statusColours = { heart = '#DE3134' }
+        }
+    },
+    boatSpeedometerStyle = 'style2',
+    boatSpeedometerColors = {
+        style1 = {
+            colours = { rpmArc = '#BEEE11', text = '#FFFFFF' },
+            statusColours = { engine = '#F3C08D', fuel = '#E484A4' }
+        },
+        style2 = {
+            colours = { needle = '#DE3134', centerCircle = '#DDDDDD' },
+            statusColours = { fuelNeedle = '#DE3134' }
+        },
+        style3 = {
+            colours = { rpmActive = '#D9D9D9', rpmRedZone = '#FF0000', gearBox = '#D9D9D9' },
+            statusColours = { indicator = '#00FF00', cruise = '#87CEEB', headlight = '#4169E1', seatbelt = '#5BE48A' }
+        },
+        style4 = {
+            colours = { rpmGradient = '#DE3134', arcFill = '#F2F2F2', text = '#FFFFFF' },
+            statusColours = {}
+        },
+        style5 = {
+            colours = { speedNeedle = '#DE3134', rpmNeedle = '#DE3134', fuelNeedle = '#DE3134', arcGradient = '#DE3134' },
+            statusColours = { centerCircle = '#DDDDDD' }
+        },
+        style6 = {
+            colours = { text = '#DDDDDD' },
+            statusColours = { heart = '#DE3134' }
+        }
+    },
+    boatShowCompassHeading = true,
+    boatEnableHornSounds = true,
+    boatShowTrimIndicator = true,
+    aircraftSpeedometerStyle = 'style1',
+    aircraftSpeedometerColors = {
+        style1 = {
+            colours = { rpmArc = '#BEEE11', text = '#FFFFFF' },
+            statusColours = { engine = '#F3C08D', fuel = '#E484A4' }
+        },
+        style2 = {
+            colours = { needle = '#DE3134', centerCircle = '#DDDDDD' },
+            statusColours = { fuelNeedle = '#DE3134' }
+        },
+        style3 = {
+            colours = { rpmActive = '#D9D9D9', rpmRedZone = '#FF0000', gearBox = '#D9D9D9' },
+            statusColours = { indicator = '#00FF00', cruise = '#87CEEB', headlight = '#4169E1', seatbelt = '#5BE48A' }
+        },
+        style4 = {
+            colours = { rpmGradient = '#DE3134', arcFill = '#F2F2F2', text = '#FFFFFF' },
+            statusColours = {}
+        },
+        style5 = {
+            colours = { speedNeedle = '#DE3134', rpmNeedle = '#DE3134', fuelNeedle = '#DE3134', arcGradient = '#DE3134' },
+            statusColours = { centerCircle = '#DDDDDD' }
+        },
+        style6 = {
+            colours = { text = '#DDDDDD' },
+            statusColours = { heart = '#DE3134' }
+        }
+    },
+    aircraftShowAltitudeIndicator = true,
+    aircraftEnableStallWarning = true,
+    aircraftShowArtificialHorizon = true,
+    aircraftShowCompassHeading = true,
+    trainSpeedometerStyle = 'style3',
+    trainSpeedometerColors = {
+        style1 = {
+            colours = { rpmArc = '#BEEE11', text = '#FFFFFF' },
+            statusColours = { engine = '#F3C08D', fuel = '#E484A4' }
+        },
+        style2 = {
+            colours = { needle = '#DE3134', centerCircle = '#DDDDDD' },
+            statusColours = { fuelNeedle = '#DE3134' }
+        },
+        style3 = {
+            colours = { rpmActive = '#D9D9D9', rpmRedZone = '#FF0000', gearBox = '#D9D9D9' },
+            statusColours = { indicator = '#00FF00', cruise = '#87CEEB', headlight = '#4169E1', seatbelt = '#5BE48A' }
+        },
+        style4 = {
+            colours = { rpmGradient = '#DE3134', arcFill = '#F2F2F2', text = '#FFFFFF' },
+            statusColours = {}
+        },
+        style5 = {
+            colours = { speedNeedle = '#DE3134', rpmNeedle = '#DE3134', fuelNeedle = '#DE3134', arcGradient = '#DE3134' },
+            statusColours = { centerCircle = '#DDDDDD' }
+        },
+        style6 = {
+            colours = { text = '#DDDDDD' },
+            statusColours = { heart = '#DE3134' }
+        }
+    },
+    showPlayerAvatar = true,
+    showRadioChannel = true,
+    playerVoiceAlignment = 'right',
+    playerVoiceBorderRadius = 'slightly',
+    voiceChatActiveColor = '#BEEE11',
+    voiceChatIdleColor = '#4A4A4A',
+    playerInfoBorderRadius = 'slightly',
+    playerInfoBackgroundColor = '#161616',
+    playerInfoIconColor = '#BEEE11',
+    playerInfoTextColor = '#C4C4C4',
+    weaponBorderRadius = 'slightly',
+    weaponBackgroundColor = '#161616',
+    weaponIconColor = '#FFFFFF',
+    weaponTextColor = '#C4C4C4',
+    vehicleControlBorderRadius = 'slightly',
+    vehicleControlColors = {
+        backgroundColor = '#161616',
+        buttonBackgroundColor = '#262626',
+        iconColor = '#FFFFFF',
+        statusOnColor = '#BEEE11',
+        statusOffColor = '#4A4A4A',
+        statusInactiveColor = '#333333',
+        textColor = '#C4C4C4',
+        badgeColor = '#BEEE11'
+    }
+}
+
+```

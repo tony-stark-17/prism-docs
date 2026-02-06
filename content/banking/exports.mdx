@@ -91,3 +91,27 @@ exports['prism_banking']:AddBankingTransaction(source, transactionType, amount, 
 > transactionName: The name of the transaction (e.g., "ATM Withdrawal").
 
 > transactionDescription: A brief description of the transaction.
+
+### AddCreditScore
+
+It will Add points to player's score
+
+```lua copy
+exports['prism_banking']:AddCreditScore(source, creditScore)
+```
+
+### RemoveCreditScore
+
+It will remove points from player's score
+
+```lua copy
+exports['prism_banking']:RemoveCreditScore(source, creditScore)
+```
+
+### SetCreditScore
+
+It will set player's score to the specified amount.
+
+```lua copy
+exports['prism_banking']:SetCreditScore(source, creditScore)
+```

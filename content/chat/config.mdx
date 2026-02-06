@@ -1,0 +1,49 @@
+# Config
+
+<div className='text-lg mt-2'
+    style={{
+        color: 'rgb(185, 198, 162)'
+    }}
+>All Prism Scripts contain various editable and unobscured files containing, exports, client<br/> and server functions, configuration methods and more.</div>
+
+## Config
+
+```lua filename="config.lua" copy
+
+Config = {}
+
+-------------------------------------------------
+-- GENERAL
+-------------------------------------------------
+Config.AutoAddDatabaseTables = true
+Config.Debug = false
+Config.PrimaryColor = '#BEEE11'
+Config.Framework = GetResourceState('qb-core') == 'started' and 'qbcore' or 'esx'
+Config.UseOXLibNotify = GetResourceState('ox_lib') == 'started' and true or false
+
+Config.Commands = {
+    ['clear'] = {
+        command = 'clear',
+        description = 'Clear the chat',
+    }
+}
+
+-------------------------------------------------
+-- TAGS
+-------------------------------------------------
+Config.Tags = {
+    ['admin'] = {
+        license = 'license:eb05527dcdeb986db7d474065e4a3023caf9e46c',
+        tag = 'ADMIN',
+        color = '#363636',
+        backgroundColor = '#FFFFFF',
+        emoji = ''
+    },
+}
+
+Config.TextCommands3D = { -- Commands that will be displayed in 3D text
+    'me',
+    'do',
+}
+
+```

@@ -1,0 +1,35 @@
+import { Callout } from 'nextra/components'
+
+# Installation
+
+<div className='text-lg mt-2'
+    style={{
+        color: 'rgb(185, 198, 162)'
+    }}
+>Basic installation instructions for prism_chat</div>
+
+<Callout type="error">
+  **WARNING** : Resource must be named ``prism_chat`` to operate properly.
+</Callout>
+
+## Asset download
+
+<Callout type="info">
+  To find the asset, you must have made the purchase using your own keymaster account. Otherwise, you can use the transfer system to move the asset to a different keymaster account.
+</Callout>
+
+<Callout type="info">
+  NOTE: There is no need to run the SQL file, it inserts it automatically
+</Callout>
+
+<div className='text-lg mt-5'>
+    Once the purchase is made on our official website, you will receive your asset directly in your [cfx portal](https://portal.cfx.re/) in your own panel you can download the asset and install it following the following documentation.
+</div>
+
+## Installation
+- **Replace the ```cl_chat.lua``` & ```sv_chat.lua``` from the default CHAT resource with the ones on _INSTALLATION folder**
+- **Add Permissions**: ```add_ace group.admin prismchat allow```
+- **[OPTIONAL] Add the steam API on the `server.cfg`**
+- **[OPTIONAL] Add the discord bot token API on `sv_utils.lua`**
+- **Drag-and-drop our script** : Drag `prism_chat` in to your `resources` directory and add `ensure prism_chat` to your `server.cfg`
+- **Restart your server**.
