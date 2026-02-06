@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Callout } from 'nextra/components'
 
 # Config
@@ -102,3 +103,26 @@ setr prism:secondaryProgressMinimal "false"
 ```
 
 > `false` or `true`. If you use the secondary progressBar, and want it to be minimalistic, set this to `true`.
+
+```lua copy
+setr prism:contextMenuPosition "right"
+```
+
+> `right` or `left`. Context-menu orientation. Check images below for preview. (Left image is `left`, Right image is `right`)
+
+<div className="flex gap-6 mt-7 mb-18">
+  <Image
+    src="/context_left.png"
+    alt="Context left"
+    width={1920}
+    height={384}
+    className="w-1/2"
+  />
+  <Image
+    src="/context_right.png"
+    alt="Context right"
+    width={1920}
+    height={384}
+    className="w-1/2"
+  />
+</div>
