@@ -18,7 +18,7 @@ export default {
     },
   },
   exports: {
-    title: 'Exports',
+    title: 'Exports & Quest Types',
     theme: {
       breadcrumb: false,
       pagination: true,

@@ -1,0 +1,123 @@
+# Installation
+
+## 📋 Requirements
+
+Before installing Prism Rewards, ensure you have the following dependencies:
+
+- [ox_lib](https://github.com/overextended/ox_lib) - Required for UI and utilities
+- [oxmysql](https://github.com/overextended/oxmysql) - Required for database operations
+- [mugshot64](https://github.com/BaziForYou/MugShotBase64) - Required for profile players
+- Compatible framework: **QB-Core**, **QBX**, or **ESX**
+
+## 📦 Installation Steps
+
+### 1. Download & Extract
+
+1. Download the `prism_reward` resource
+2. Extract the folder into your server's `resources` directory
+
+### 2. Add to Server Config
+
+Add the following to your `server.cfg`:
+
+```cfg copy
+ensure ox_lib
+ensure oxmysql
+ensure prism_reward
+ensure mugshot64
+```
+
+> **Note:** Ensure that `ox_lib` and `oxmysql` are started before `prism_reward`
+
+### 3. Database Setup
+
+The database tables will be **automatically created** on first server start:
+
+- `prism_rewards` - Stores player progression data
+- `prism_leaderboard` - Stores leaderboard rankings
+- `prism_redeemed` - Tracks Tebex redemptions
+
+No manual SQL import is required!
+
+### 4. Configure Webhooks
+
+Edit `server/serverConfig.lua` and add your Discord webhooks:
+
+```lua copy
+ServerConfig = {
+    Webhooks = {
+        QuestComplete = 'YOUR_WEBHOOK_URL',
+        LevelUp = 'YOUR_WEBHOOK_URL',
+        PurchaseLog = 'YOUR_WEBHOOK_URL',
+        TebexRedeem = 'YOUR_WEBHOOK_URL'
+    }
+}
+```
+
+### 5. Configure Profile Pictures
+
+Edit `server/serverConfig.lua` and add your Discord webhooks:
+
+```lua copy
+ServerConfig = {
+    Webhooks = {
+        QuestComplete = 'YOUR_WEBHOOK_URL',
+        LevelUp = 'YOUR_WEBHOOK_URL',
+        PurchaseLog = 'YOUR_WEBHOOK_URL',
+        TebexRedeem = 'YOUR_WEBHOOK_URL'
+    }
+}
+```
+
+### 6. Restart Server
+
+Restart your FiveM server or start the resource:
+
+```bash
+restart prism_reward
+# or
+start prism_reward
+```
+
+## ✅ Verify Installation
+
+Once the server starts, verify the installation by:
+
+1. Joining your server
+2. Press `L` (default key) or type `/rewards` to open the menu
+3. Press `F10` (default key) or type `/tracker` to open the menu
+4. Check server console for any errors
+
+If you see the Prism Rewards menu, installation is complete! 🎉
+
+
+## 🔧 First-Time Configuration
+
+After installation, you'll want to configure:
+
+1. **Quests** - Edit available quests in the config
+2. **Shop Items** - Configure premium shop items
+3. **Leaderboard Periods** - Configure daily/weekly/monthly resets
+4. **Rewards** - Set level-up and milestone rewards
+
+See the [Config](/deluxereward/config) page for detailed configuration options.
+
+## 🆘 Troubleshooting
+
+### Database Tables Not Created
+
+If tables aren't created automatically:
+- Ensure `oxmysql` is running correctly
+- Check console for SQL errors
+- Verify database credentials in `oxmysql` config
+
+### Menu Not Opening
+
+- Verify `ox_lib` is installed and updated
+- Check for keybind conflicts with L
+- Try using `/rewards` command instead
+
+### Framework Not Detected
+
+- Ensure your framework (QB-Core/QBX/ESX) is started before `prism_reward`
+- Check framework export names match your version

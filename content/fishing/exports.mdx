@@ -1,0 +1,95 @@
+# Exports and Events
+
+## Client Side Exports
+
+### IsPlayerFishing
+
+Returns whether the player is currently fishing.
+
+```lua copy
+local isFishing = exports['prism_fishing']:IsPlayerFishing()
+```
+
+**Returns:**
+- `boolean` - `true` if the player is currently fishing, `false` otherwise
+
+**Example:**
+```lua copy
+if exports['prism_fishing']:IsPlayerFishing() then
+    print("Player is fishing")
+else
+    print("Player is not fishing")
+end
+```
+
+### GetPlayerFishData
+
+Returns the player's fishing data including their level, XP, and statistics.
+
+```lua copy
+local PlayerFish = exports['prism_fishing']:GetPlayerFishData()
+```
+
+**Returns:**
+- `table` - Player fishing data with the following fields:
+  - `identifier` (string) - Player identifier
+  - `level` (number) - Current fishing level
+  - `xp` (number) - Current experience points
+  - `totalFishCaught` (number) - Total number of fish caught
+
+**Example:**
+```lua copy
+local PlayerFish = exports['prism_fishing']:GetPlayerFishData()
+print("Identifier:", PlayerFish.identifier)
+print("Level:", PlayerFish.level)
+print("XP:", PlayerFish.xp)
+print("Total Fish Caught:", PlayerFish.totalFishCaught)
+```
+
+## Server Side Events
+
+### prism_fishing:server:FinishFishing
+
+This event is triggered when a player successfully finishes fishing and catches a fish.
+
+```lua copy
+AddEventHandler('prism_fishing:server:FinishFishing', function(data)
+    -- Your code here
+end)
+```
+
+**Data Table Fields:**
+- `source` (number) - Player source who finished fishing (server ID)
+- `fish` (string) - Base fish key from Config.Fish (e.g., 'fish', 'anchovy')
+- `itemName` (string) - Final item name added to inventory (may include quality suffix, e.g., 'fish_bruised' or 'fish_perfect')
+- `quality` (string) - Quality identifier ('perfect', 'bruised')
+- `progressAccuracy` (number) - Accuracy/progress percent achieved in minigame (0-100)
+- `dangerZone` (string|nil) - Identifier of danger zone if the catch happened inside one, or `nil`
+- `qualityData` (table|nil) - Quality metadata from Config.FishQuality.qualities[data.quality]
+  - Contains fields like `icon`, `label`, `xpMultiplier`
+
+**Example Usage:**
+```lua copy
+AddEventHandler('prism_fishing:server:FinishFishing', function(data)
+    local src = data.source
+    local finalItem = data.itemName
+    local baseFish = data.fish
+    
+    -- Calculate XP with quality multiplier
+    local baseXP = Config.Fish[data.fish].xpReward or 1
+    local xpMultiplier = (data.qualityData and data.qualityData.xpMultiplier) or 1
+    local totalXP = baseXP * xpMultiplier
+    
+    -- Log the catch
+    print(string.format("Player %s caught %s (%s quality) with %.1f%% accuracy",
+        src, finalItem, data.quality, data.progressAccuracy))
+    
+    -- Check if caught in danger zone
+    if data.dangerZone then
+        print("Caught in danger zone:", data.dangerZone)
+        -- Award bonus or trigger special event
+    end
+    
+    -- Grant additional rewards, achievements, etc.
+end)
+```

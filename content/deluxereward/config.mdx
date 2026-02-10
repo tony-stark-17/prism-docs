@@ -1,0 +1,314 @@
+# Configuration
+
+## 📁 Configuration Files
+
+Prism Rewards uses multiple configuration files for better organization:
+
+- `shared/config.lua` - Main quest and shop configuration
+- `shared/locales.lua` - Translation strings
+- `server/serverConfig.lua` - Server-side settings and webhooks
+
+## 🎯 Quest Configuration
+
+### Basic Quest Structure
+
+```lua copy
+{
+    id = 'unique_quest_id',
+    type = 'quest_type',
+    name = 'Quest Name',
+    description = 'Quest description shown to players',
+    count = 1,  -- Number of times to complete
+    data = {
+        -- Type-specific data
+    },
+    rewards = {
+        xp = 100,
+        coins = 50
+    }
+}
+```
+
+### Example Quests
+
+#### Distance-Based Quest
+```lua copy
+{
+    id = 'prism:driving:beginner',
+    type = 'driving',
+    name = 'Sunday Drive',
+    description = 'Drive 1000 meters',
+    count = 1,
+    data = {
+        distance = 1000  -- meters
+    },
+    rewards = {
+        xp = 50,
+        coins = 25
+    }
+}
+```
+
+#### Speed Challenge
+```lua copy
+{
+    id = 'prism:speeding:pro',
+    type = 'speeding',
+    name = 'Speed Demon',
+    description = 'Drive over 120km/h for 2km (Repeat 2 times)',
+    count = 2,  -- Must complete twice
+    data = {
+        threshold = 120,  -- km/h
+        distance = 2000   -- meters
+    },
+    rewards = {
+        xp = 200,
+        coins = 100
+    }
+}
+```
+
+#### Location-Based Quest
+```lua copy
+{
+    id = 'prism:reach:lighthouse',
+    type = 'reach_zone',
+    name = 'Tourist',
+    description = 'Visit the lighthouse',
+    count = 1,
+    data = {
+        coords = vector3(3430.0, 5178.0, 7.0),
+        radius = 50.0
+    },
+    rewards = {
+        xp = 75,
+        coins = 30
+    }
+}
+```
+
+## 🏪 Shop Configuration
+
+### Shop Item Structure
+
+```lua copy
+{
+    id = 'unique_item_id',
+    name = 'Item Name',
+    description = 'Item description',
+    price = 1000,  -- Coins
+    icon = 'icon-name',
+    type = 'item',  -- 'item', 'weapon', or 'vehicle'
+    itemName = 'actual_item_name',  -- Server item name
+    amount = 1
+}
+```
+
+### Example Shop Items
+
+#### Consumable Item
+```lua copy
+{
+    id = 'shop:water',
+    name = 'Water Bottle',
+    description = 'Refreshing water to keep you hydrated',
+    price = 50,
+    icon = 'water',
+    type = 'item',
+    itemName = 'water',
+    amount = 5
+}
+```
+
+#### Weapon
+```lua copy
+{
+    id = 'shop:pistol',
+    name = 'Pistol',
+    description = 'Standard 9mm pistol with 50 bullets',
+    price = 2500,
+    icon = 'gun',
+    type = 'weapon',
+    itemName = 'weapon_pistol',
+    amount = 1
+}
+```
+
+#### Vehicle
+```lua copy
+{
+    id = 'shop:adder',
+    name = 'Adder',
+    description = 'Luxury supercar (Permanent)',
+    price = 50000,
+    icon = 'car-sports',
+    type = 'vehicle',
+    itemName = 'adder',
+    amount = 1
+}
+```
+
+## 🏆 Leaderboard Configuration
+
+Configure leaderboard reset periods:
+
+```lua copy
+Config.Leaderboard = {
+    EnableDaily = true,
+    EnableWeekly = true,
+    EnableMonthly = true,
+    EnableAllTime = true,
+    
+    -- Reset times (24-hour format)
+    DailyResetHour = 0,  -- Midnight
+    WeeklyResetDay = 1,  -- Monday
+    MonthlyResetDay = 1, -- 1st of month
+    
+    -- Display settings
+    TopPlayersShown = 10
+}
+```
+
+## 📊 Progression System
+
+### Level Configuration
+
+```lua copy
+Config.Progression = {
+    -- XP required per level
+    BaseXPPerLevel = 100,
+    XPMultiplier = 1.5,  -- Increases per level
+    
+    -- Max level
+    MaxLevel = 100,
+    
+    -- Level rewards
+    LevelRewards = {
+        [5] = { coins = 500 },
+        [10] = { coins = 1000, item = 'special_item' },
+        [25] = { coins = 2500, vehicle = 'tier1_car' },
+        [50] = { coins = 10000 }
+    }
+}
+```
+
+## 🎨 UI Configuration
+
+```lua copy
+Config.UI = {
+    -- Default key to open menu
+    OpenKey = 'F10',
+    
+    -- Quest tracker
+    ShowTracker = true,
+    TrackerPosition = 'right',  -- 'left' or 'right'
+    
+    -- Notifications
+    EnableNotifications = true,
+    NotificationDuration = 5000  -- milliseconds
+}
+```
+
+## 🔒 Security Settings
+
+```lua copy
+Config.Security = {
+    -- Anti-cheat
+    EnableProgressValidation = true,
+    MaxProgressPerSecond = 100,  -- meters/second for distance tracking
+    
+    -- Rate limiting
+    ActionCooldown = 1000,  -- milliseconds between actions
+    
+    -- Admin bypass
+    AdminBypass = false  -- Allow admins to skip validation
+}
+```
+
+## 🌐 Localization
+
+Locales are stored in `shared/locales.lua`:
+
+```lua copy
+Locales = {
+    ['en'] = {
+        ['menu_title'] = 'Prism Rewards',
+        ['quest_complete'] = 'Quest Completed!',
+        ['level_up'] = 'Level Up!',
+        -- ... more translations
+    },
+    ['id'] = {
+        ['menu_title'] = 'Prism Hadiah',
+        ['quest_complete'] = 'Quest Selesai!',
+        ['level_up'] = 'Naik Level!',
+        -- ... more translations
+    }
+}
+```
+
+Set the active locale:
+
+```lua copy
+Config.Locale = 'en'  -- or 'id', 'es', etc.
+```
+
+## 🔔 Webhook Configuration
+
+Configure Discord webhooks in `server/serverConfig.lua`:
+
+```lua copy
+ServerConfig.Webhooks = {
+    QuestComplete = 'https://discord.com/api/webhooks/...',
+    LevelUp = 'https://discord.com/api/webhooks/...',
+    PurchaseLog = 'https://discord.com/api/webhooks/...',
+    TebexRedeem = 'https://discord.com/api/webhooks/...'
+}
+```
+
+## 🎁 Tebex Integration
+
+Configure Tebex rewards:
+
+```lua copy
+Config.Tebex = {
+    Enabled = true,
+    
+    -- Reward packages
+    Packages = {
+        ['starter_pack'] = {
+            coins = 1000,
+            xp = 500
+        },
+        ['premium_pack'] = {
+            coins = 5000,
+            xp = 2000
+        }
+    }
+}
+```
+
+### Redeem Command
+
+Console command to grant Tebex rewards:
+
+```bash
+tebex_reward {transactionId} {package_name}
+```
+
+## 💡 Tips
+
+- **Quest Balance**: Start with easier quests to onboard new players
+- **Shop Pricing**: Balance coin earnings vs shop prices
+- **Leaderboard**: Consider seasonal resets for competitiveness
+- **Webhooks**: Use webhooks to monitor player progression
+- **Security**: Enable validation on production servers
+
+## 🔄 Reloading Configuration
+
+To reload configuration without restarting:
+
+```bash
+refresh prism_reward
+```
+
+> **Note:** Some changes may require a full server restart

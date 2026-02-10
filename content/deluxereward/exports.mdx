@@ -1,0 +1,725 @@
+# Exports & Quest Types
+
+## 📖 Quest Types Overview
+
+Prism Rewards supports a wide variety of quest types to engage your players. Each quest type tracks different player activities and can be configured with specific requirements.
+
+> **Repetitive Sets Logic**
+> 
+> If a quest has `count = 5` and `data.distance = 1000`, the player must complete **5 sets** of 1,000 meters each. Each time they reach 1,000 meters, the quest progress increments by 1.
+
+---
+
+## 🚗 Vehicle Activities
+
+Quests related to driving various types of vehicles.
+
+### driving
+**Tracking:** Repetitive distance sets
+
+Complete X sets of driving Y meters in any land vehicle.
+
+```lua copy
+{
+    id = 'prism:driving:basic',
+    type = 'driving',
+    name = 'Road Trip',
+    description = 'Drive 5000 meters',
+    count = 1,
+    data = {
+        distance = 5000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to drive per set
+
+---
+
+### boating
+**Tracking:** Repetitive distance sets
+
+Complete X sets of boating Y meters.
+
+```lua copy
+{
+    id = 'prism:boating:sailor',
+    type = 'boating',
+    name = 'Set Sail',
+    description = 'Boat for 2000 meters',
+    count = 1,
+    data = {
+        distance = 2000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to boat per set
+
+---
+
+### flying
+**Tracking:** Repetitive distance sets
+
+Complete X sets of flying Y meters in aircraft.
+
+```lua copy
+{
+    id = 'prism:flying:pilot',
+    type = 'flying',
+    name = 'Take Flight',
+    description = 'Fly 10000 meters',
+    count = 1,
+    data = {
+        distance = 10000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to fly per set
+
+---
+
+### motorcycling
+**Tracking:** Repetitive distance sets
+
+Complete X sets of riding Y meters on motorcycles.
+
+```lua copy
+{
+    id = 'prism:moto:rider',
+    type = 'motorcycling',
+    name = 'Biker Gang',
+    description = 'Ride 3000 meters on a motorcycle',
+    count = 1,
+    data = {
+        distance = 3000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to ride per set
+
+---
+
+### cycling
+**Tracking:** Repetitive distance sets
+
+Complete X sets of cycling Y meters on bicycles.
+
+```lua copy
+{
+    id = 'prism:cycling:fitness',
+    type = 'cycling',
+    name = 'Pedal Power',
+    description = 'Cycle 2000 meters',
+    count = 1,
+    data = {
+        distance = 2000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to cycle per set
+
+---
+
+### offroading
+**Tracking:** Repetitive distance sets
+
+Complete X sets of offroading Y meters in off-road conditions.
+
+```lua copy
+{
+    id = 'prism:offroad:adventure',
+    type = 'offroading',
+    name = 'Off the Beaten Path',
+    description = 'Offroad for 1500 meters',
+    count = 1,
+    data = {
+        distance = 1500  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to offroad per set
+
+---
+
+### speeding
+**Tracking:** Repetitive distance sets above speed threshold
+
+Stay above a specific speed for Y meters to complete one set.
+
+```lua copy
+{
+    id = 'prism:speeding:demon',
+    type = 'speeding',
+    name = 'Speed Demon',
+    description = 'Drive over 120km/h for 2km (Repeat 2 times)',
+    count = 2,
+    data = {
+        threshold = 120,  -- km/h
+        distance = 2000   -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `threshold` (number) - Minimum speed in km/h
+- `distance` (number) - Meters to maintain speed per set
+
+---
+
+### wheelie
+**Tracking:** Repetitive distance sets
+
+Perform wheelies for Y meters on motorcycles or bikes.
+
+```lua copy
+{
+    id = 'prism:wheelie:stunt',
+    type = 'wheelie',
+    name = 'Wheelie Master',
+    description = 'Wheelie for 500 meters',
+    count = 1,
+    data = {
+        distance = 500  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to wheelie per set
+
+---
+
+### drifting
+**Tracking:** Repetitive distance sets
+
+Drift for Y meters to complete sets.
+
+```lua copy
+{
+    id = 'prism:drift:master',
+    type = 'drifting',
+    name = 'Drift King',
+    description = 'Drift for 1000 meters',
+    count = 1,
+    data = {
+        distance = 1000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to drift per set
+
+---
+
+### airtime
+**Tracking:** Repetitive distance sets
+
+Achieve air distance by jumping vehicles.
+
+```lua copy
+{
+    id = 'prism:airtime:stunt',
+    type = 'airtime',
+    name = 'Flying High',
+    description = 'Get 200 meters of airtime',
+    count = 1,
+    data = {
+        distance = 200  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters of air distance per set
+
+---
+
+## 🏃 Movement & Fitness
+
+Player movement-based activities.
+
+### running
+**Tracking:** Repetitive distance sets
+
+Run for Y meters on foot.
+
+```lua copy
+{
+    id = 'prism:running:marathon',
+    type = 'running',
+    name = 'Marathon Runner',
+    description = 'Run for 5000 meters',
+    count = 1,
+    data = {
+        distance = 5000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to run per set
+
+---
+
+### swimming
+**Tracking:** Repetitive distance sets
+
+Swim for Y meters.
+
+```lua copy
+{
+    id = 'prism:swimming:athlete',
+    type = 'swimming',
+    name = 'Swimmer',
+    description = 'Swim for 1000 meters',
+    count = 1,
+    data = {
+        distance = 1000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to swim per set
+
+---
+
+### diving
+**Tracking:** Repetitive distance sets
+
+Dive underwater for Y meters.
+
+```lua copy
+{
+    id = 'prism:diving:explorer',
+    type = 'diving',
+    name = 'Deep Diver',
+    description = 'Dive for 500 meters',
+    count = 1,
+    data = {
+        distance = 500  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to dive per set
+
+---
+
+### stealth
+**Tracking:** Repetitive distance sets
+
+Move in stealth mode for Y meters.
+
+```lua copy
+{
+    id = 'prism:stealth:ninja',
+    type = 'stealth',
+    name = 'Silent Shadow',
+    description = 'Sneak for 300 meters',
+    count = 1,
+    data = {
+        distance = 300  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to sneak per set
+
+---
+
+### parachuting
+**Tracking:** Repetitive distance sets
+
+Glide with parachute for Y meters.
+
+```lua copy
+{
+    id = 'prism:parachute:skydiver',
+    type = 'parachuting',
+    name = 'Skydiver',
+    description = 'Parachute for 2000 meters',
+    count = 1,
+    data = {
+        distance = 2000  -- meters
+    }
+}
+```
+
+**Data Fields:**
+- `distance` (number) - Meters to glide per set
+
+---
+
+## 🔫 Combat & Action
+
+Combat-related quest activities.
+
+### aiming
+**Tracking:** Repetitive time sets
+
+Aim down sights for Y seconds per set.
+
+```lua copy
+{
+    id = 'prism:aiming:sniper',
+    type = 'aiming',
+    name = 'Steady Hands',
+    description = 'Aim with a weapon for 10 seconds (Repeat 5 times)',
+    count = 5,
+    data = {
+        weapon = 'weapon_pistol',  -- optional: specific weapon
+        seconds = 10
+    }
+}
+```
+
+**Data Fields:**
+- `seconds` (number) - Seconds to aim per set
+- `weapon` (string, optional) - Specific weapon hash/name
+
+---
+
+### reloading
+**Tracking:** Each reload counts
+
+Reload a weapon X times.
+
+```lua copy
+{
+    id = 'prism:reload:tactical',
+    type = 'reloading',
+    name = 'Tactical Reload',
+    description = 'Reload your weapon 10 times',
+    count = 10,
+    data = {
+        weapon = 'weapon_pistol'  -- optional: specific weapon
+    }
+}
+```
+
+**Data Fields:**
+- `weapon` (string, optional) - Specific weapon hash/name
+
+---
+
+### melee
+**Tracking:** Each melee hit counts
+
+Engage in melee combat X times.
+
+```lua copy
+{
+    id = 'prism:melee:brawler',
+    type = 'melee',
+    name = 'Street Fighter',
+    description = 'Land 20 melee hits',
+    count = 20,
+    data = {}
+}
+```
+
+**Data Fields:** None required
+
+---
+
+## 🗺️ Exploration & Interaction
+
+Location and exploration-based quests.
+
+### reach_zone
+**Tracking:** One-shot completion
+
+Arrive at a specific location.
+
+```lua copy
+{
+    id = 'prism:reach:lighthouse',
+    type = 'reach_zone',
+    name = 'Tourist',
+    description = 'Visit the lighthouse',
+    count = 1,
+    data = {
+        coords = vector3(3430.0, 5178.0, 7.0),
+        radius = 50.0  -- detection radius in meters
+    }
+}
+```
+
+**Data Fields:**
+- `coords` (vector3) - Target coordinates
+- `radius` (number) - Detection radius in meters
+
+---
+
+### find_object
+**Tracking:** Proximity to object model
+
+Find a specific object/prop model.
+
+```lua copy
+{
+    id = 'prism:find:treasure',
+    type = 'find_object',
+    name = 'Treasure Hunter',
+    description = 'Find the hidden treasure chest',
+    count = 1,
+    data = {
+        model = 'prop_box_wood02a_pu',
+        radius = 5.0,
+        minutes = 0  -- optional: time to stay near object
+    }
+}
+```
+
+**Data Fields:**
+- `model` (string) - Object model hash/name
+- `radius` (number) - Detection radius in meters
+- `minutes` (number, optional) - Time to stay near object
+
+---
+
+### find_ped
+**Tracking:** Proximity to ped model
+
+Find a specific NPC/ped model.
+
+```lua copy
+{
+    id = 'prism:find:celebrity',
+    type = 'find_ped',
+    name = 'Celebrity Spotter',
+    description = 'Find the famous actor',
+    count = 1,
+    data = {
+        model = 'a_m_y_business_01',
+        radius = 3.0,
+        minutes = 0  -- optional: time to stay near ped
+    }
+}
+```
+
+**Data Fields:**
+- `model` (string) - Ped model hash/name
+- `radius` (number) - Detection radius in meters
+- `minutes` (number, optional) - Time to stay near ped
+
+---
+
+## 🔌 Exports
+
+### Client Side
+
+#### GetPlayerProgress
+Get current player's progression data.
+
+```lua copy
+local progress = exports['prism_reward']:GetPlayerProgress()
+print(progress.level, progress.xp, progress.coins)
+```
+
+**Returns:**
+- `table` - Player progression data
+  - `level` (number) - Current level
+  - `xp` (number) - Current experience points
+  - `coins` (number) - Current coins
+  - `quests` (table) - Active quest progress
+
+---
+
+#### GetActiveQuests
+Get list of player's active quests.
+
+```lua copy
+local quests = exports['prism_reward']:GetActiveQuests()
+for _, quest in ipairs(quests) do
+    print(quest.name, quest.progress, quest.count)
+end
+```
+
+**Returns:**
+- `table` - Array of active quests
+
+---
+
+#### IsQuestActive
+Check if a specific quest is active.
+
+```lua copy
+local isActive = exports['prism_reward']:IsQuestActive('prism:driving:basic')
+```
+
+**Parameters:**
+- `questId` (string) - Quest identifier
+
+**Returns:**
+- `boolean` - Whether quest is active
+
+---
+
+### Server Side
+
+#### AddPlayerXP
+Add XP to a player.
+
+```lua copy
+exports['prism_reward']:AddPlayerXP(source, 100)
+```
+
+**Parameters:**
+- `source` (number) - Player server ID
+- `amount` (number) - XP amount to add
+
+---
+
+#### AddPlayerCoins
+Add coins to a player.
+
+```lua copy
+exports['prism_reward']:AddPlayerCoins(source, 50)
+```
+
+**Parameters:**
+- `source` (number) - Player server ID
+- `amount` (number) - Coins to add
+
+---
+
+#### RemovePlayerCoins
+Remove coins from a player.
+
+```lua copy
+local success = exports['prism_reward']:RemovePlayerCoins(source, 100)
+```
+
+**Parameters:**
+- `source` (number) - Player server ID
+- `amount` (number) - Coins to remove
+
+**Returns:**
+- `boolean` - Whether removal was successful
+
+---
+
+#### GetPlayerData
+Get a player's complete progression data.
+
+```lua copy
+local data = exports['prism_reward']:GetPlayerData(source)
+print(data.identifier, data.level, data.xp, data.coins)
+```
+
+**Parameters:**
+- `source` (number) - Player server ID
+
+**Returns:**
+- `table` - Player data
+  - `identifier` (string) - Player identifier
+  - `level` (number) - Current level
+  - `xp` (number) - Experience points
+  - `coins` (number) - Coins balance
+
+---
+
+#### CompleteQuest
+Manually complete a quest for a player.
+
+```lua copy
+exports['prism_reward']:CompleteQuest(source, 'prism:driving:basic')
+```
+
+**Parameters:**
+- `source` (number) - Player server ID
+- `questId` (string) - Quest identifier
+
+---
+
+## 📡 Events
+
+### Client Side Events
+
+#### prism_reward:client:QuestComplete
+Triggered when a player completes a quest.
+
+```lua copy
+AddEventHandler('prism_reward:client:QuestComplete', function(questData)
+    print("Completed quest:", questData.name)
+    print("Rewards:", questData.rewards.xp, questData.rewards.coins)
+end)
+```
+
+---
+
+#### prism_reward:client:LevelUp
+Triggered when a player levels up.
+
+```lua copy
+AddEventHandler('prism_reward:client:LevelUp', function(newLevel)
+    print("New level:", newLevel)
+end)
+```
+
+---
+
+### Server Side Events
+
+#### prism_reward:server:PlayerLoaded
+Triggered when a player's reward data is loaded.
+
+```lua copy
+AddEventHandler('prism_reward:server:PlayerLoaded', function(source, playerData)
+    print("Player loaded:", playerData.identifier)
+end)
+```
+
+---
+
+## 💡 Integration Examples
+
+### Custom Quest Trigger
+
+```lua copy
+-- Trigger custom quest progress from your scripts
+TriggerServerEvent('prism_reward:server:UpdateQuestProgress', {
+    type = 'custom',
+    questId = 'my_custom_quest',
+    progress = 1
+})
+```
+
+### Level-Based Permissions
+
+```lua copy
+-- Grant permissions based on reward level
+local playerData = exports['prism_reward']:GetPlayerData(source)
+if playerData.level >= 10 then
+    -- Grant special access
+end
+```
+
+### Economy Integration
+
+```lua copy
+-- Use coins as secondary currency
+RegisterCommand('buyitem', function(source, args)
+    local playerData = exports['prism_reward']:GetPlayerData(source)
+    if playerData.coins >= 100 then
+        exports['prism_reward']:RemovePlayerCoins(source, 100)
+        -- Give item
+    end
+end)
+```
