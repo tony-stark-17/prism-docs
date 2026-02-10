@@ -162,4 +162,13 @@ export default {
       collapsed: true
     },
   },
+  deluxereward: {
+    title: '🎁 Prism Deluxe Reward',
+    theme: {
+      breadcrumb: false,
+      pagination: true,
+      copyPage: false,
+      collapsed: true
+    },
+  },
 }

@@ -2,11 +2,19 @@
 
 ## 📖 Quest Types Overview
 
-Prism Rewards supports a wide variety of quest types to engage your players. Each quest type tracks different player activities and can be configured with specific requirements.
+Prism Rewards supports a wide variety of Quest Types to engage your players. Each Quest Type tracks different player activities and can be configured with specific requirements.
+
+> **⚠️ IMPORTANT: Quest ID Must Be Unique**
+> 
+> Each quest must have a **unique ID**. The `id` field is used to identify and track quests in the server. If two quests share the same ID, it will cause conflicts and tracking errors.
+> 
+> **Format Recommendation:** Use a namespaced format like `prefix:category:name` (e.g., `prism:driving:basic`, `myserver:vip:speedster`)
 
 > **Repetitive Sets Logic**
 > 
 > If a quest has `count = 5` and `data.distance = 1000`, the player must complete **5 sets** of 1,000 meters each. Each time they reach 1,000 meters, the quest progress increments by 1.
+> 
+> **Example:** A quest with `count = 3` and `distance = 500` means the player must travel 500 meters three separate times. Each completed 500-meter segment adds 1 to their progress.
 
 ---
 
@@ -14,8 +22,8 @@ Prism Rewards supports a wide variety of quest types to engage your players. Eac
 
 Quests related to driving various types of vehicles.
 
-### driving
-**Tracking:** Repetitive distance sets
+### Driving
+**Tracking:** Repetitive Distance Sets
 
 Complete X sets of driving Y meters in any land vehicle.
 
@@ -27,20 +35,20 @@ Complete X sets of driving Y meters in any land vehicle.
     description = 'Drive 5000 meters',
     count = 1,
     data = {
-        distance = 5000  -- meters
+        distance = 5000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to drive per set
+- `distance` (Number) - Meters to drive per set
 
 ---
 
-### boating
-**Tracking:** Repetitive distance sets
+### Boating
+**Tracking:** Repetitive Distance Sets
 
-Complete X sets of boating Y meters.
+Complete X sets of boating Y meters in any watercraft.
 
 ```lua copy
 {
@@ -50,20 +58,20 @@ Complete X sets of boating Y meters.
     description = 'Boat for 2000 meters',
     count = 1,
     data = {
-        distance = 2000  -- meters
+        distance = 2000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to boat per set
+- `distance` (Number) - Meters to boat per set
 
 ---
 
-### flying
-**Tracking:** Repetitive distance sets
+### Flying
+**Tracking:** Repetitive Distance Sets
 
-Complete X sets of flying Y meters in aircraft.
+Complete X sets of flying Y meters in any aircraft.
 
 ```lua copy
 {
@@ -73,18 +81,18 @@ Complete X sets of flying Y meters in aircraft.
     description = 'Fly 10000 meters',
     count = 1,
     data = {
-        distance = 10000  -- meters
+        distance = 10000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to fly per set
+- `distance` (Number) - Meters to fly per set
 
 ---
 
-### motorcycling
-**Tracking:** Repetitive distance sets
+### Motorcycling
+**Tracking:** Repetitive Distance Sets
 
 Complete X sets of riding Y meters on motorcycles.
 
@@ -96,18 +104,18 @@ Complete X sets of riding Y meters on motorcycles.
     description = 'Ride 3000 meters on a motorcycle',
     count = 1,
     data = {
-        distance = 3000  -- meters
+        distance = 3000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to ride per set
+- `distance` (Number) - Meters to ride per set
 
 ---
 
-### cycling
-**Tracking:** Repetitive distance sets
+### Cycling
+**Tracking:** Repetitive Distance Sets
 
 Complete X sets of cycling Y meters on bicycles.
 
@@ -119,18 +127,18 @@ Complete X sets of cycling Y meters on bicycles.
     description = 'Cycle 2000 meters',
     count = 1,
     data = {
-        distance = 2000  -- meters
+        distance = 2000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to cycle per set
+- `distance` (Number) - Meters to cycle per set
 
 ---
 
-### offroading
-**Tracking:** Repetitive distance sets
+### Offroading
+**Tracking:** Repetitive Distance Sets
 
 Complete X sets of offroading Y meters in off-road conditions.
 
@@ -142,20 +150,20 @@ Complete X sets of offroading Y meters in off-road conditions.
     description = 'Offroad for 1500 meters',
     count = 1,
     data = {
-        distance = 1500  -- meters
+        distance = 1500  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to offroad per set
+- `distance` (Number) - Meters to offroad per set
 
 ---
 
-### speeding
-**Tracking:** Repetitive distance sets above speed threshold
+### Speeding
+**Tracking:** Repetitive Distance Sets Above Speed Threshold
 
-Stay above a specific speed for Y meters to complete one set.
+Stay above a specific speed for Y meters to complete one set. The player must maintain the threshold speed continuously while traveling the required distance.
 
 ```lua copy
 {
@@ -165,22 +173,22 @@ Stay above a specific speed for Y meters to complete one set.
     description = 'Drive over 120km/h for 2km (Repeat 2 times)',
     count = 2,
     data = {
-        threshold = 120,  -- km/h
-        distance = 2000   -- meters
+        threshold = 120,  -- Km/h
+        distance = 2000   -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `threshold` (number) - Minimum speed in km/h
-- `distance` (number) - Meters to maintain speed per set
+- `threshold` (Number) - Minimum speed in km/h that must be maintained
+- `distance` (Number) - Meters to travel while maintaining the speed threshold per set
 
 ---
 
-### wheelie
-**Tracking:** Repetitive distance sets
+### Wheelie
+**Tracking:** Repetitive Distance Sets
 
-Perform wheelies for Y meters on motorcycles or bikes.
+Perform wheelies for Y meters on motorcycles or bikes. The player must keep the front wheel elevated continuously.
 
 ```lua copy
 {
@@ -190,20 +198,20 @@ Perform wheelies for Y meters on motorcycles or bikes.
     description = 'Wheelie for 500 meters',
     count = 1,
     data = {
-        distance = 500  -- meters
+        distance = 500  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to wheelie per set
+- `distance` (Number) - Meters to wheelie per set
 
 ---
 
-### drifting
-**Tracking:** Repetitive distance sets
+### Drifting
+**Tracking:** Repetitive Distance Sets
 
-Drift for Y meters to complete sets.
+Drift for Y meters to complete sets. The vehicle must be actively drifting (sliding sideways) while traveling.
 
 ```lua copy
 {
@@ -213,20 +221,20 @@ Drift for Y meters to complete sets.
     description = 'Drift for 1000 meters',
     count = 1,
     data = {
-        distance = 1000  -- meters
+        distance = 1000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to drift per set
+- `distance` (Number) - Meters to drift per set
 
 ---
 
-### airtime
-**Tracking:** Repetitive distance sets
+### Airtime
+**Tracking:** Repetitive Distance Sets
 
-Achieve air distance by jumping vehicles.
+Achieve air distance by jumping vehicles. Tracks the horizontal distance traveled while the vehicle is airborne.
 
 ```lua copy
 {
@@ -236,24 +244,24 @@ Achieve air distance by jumping vehicles.
     description = 'Get 200 meters of airtime',
     count = 1,
     data = {
-        distance = 200  -- meters
+        distance = 200  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters of air distance per set
+- `distance` (Number) - Meters of air distance per set
 
 ---
 
 ## 🏃 Movement & Fitness
 
-Player movement-based activities.
+Player movement-based activities performed on foot.
 
-### running
-**Tracking:** Repetitive distance sets
+### Running
+**Tracking:** Repetitive Distance Sets
 
-Run for Y meters on foot.
+Run for Y meters on foot. The player must be in a running state (sprinting).
 
 ```lua copy
 {
@@ -263,20 +271,20 @@ Run for Y meters on foot.
     description = 'Run for 5000 meters',
     count = 1,
     data = {
-        distance = 5000  -- meters
+        distance = 5000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to run per set
+- `distance` (Number) - Meters to run per set
 
 ---
 
-### swimming
-**Tracking:** Repetitive distance sets
+### Swimming
+**Tracking:** Repetitive Distance Sets
 
-Swim for Y meters.
+Swim for Y meters in water.
 
 ```lua copy
 {
@@ -286,20 +294,20 @@ Swim for Y meters.
     description = 'Swim for 1000 meters',
     count = 1,
     data = {
-        distance = 1000  -- meters
+        distance = 1000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to swim per set
+- `distance` (Number) - Meters to swim per set
 
 ---
 
-### diving
-**Tracking:** Repetitive distance sets
+### Diving
+**Tracking:** Repetitive Distance Sets
 
-Dive underwater for Y meters.
+Dive underwater for Y meters. The player must be fully submerged while traveling.
 
 ```lua copy
 {
@@ -309,20 +317,20 @@ Dive underwater for Y meters.
     description = 'Dive for 500 meters',
     count = 1,
     data = {
-        distance = 500  -- meters
+        distance = 500  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to dive per set
+- `distance` (Number) - Meters to dive per set
 
 ---
 
-### stealth
-**Tracking:** Repetitive distance sets
+### Stealth
+**Tracking:** Repetitive Distance Sets
 
-Move in stealth mode for Y meters.
+Move in stealth mode for Y meters. The player must be in a crouched or sneaking state.
 
 ```lua copy
 {
@@ -332,20 +340,20 @@ Move in stealth mode for Y meters.
     description = 'Sneak for 300 meters',
     count = 1,
     data = {
-        distance = 300  -- meters
+        distance = 300  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to sneak per set
+- `distance` (Number) - Meters to sneak per set
 
 ---
 
-### parachuting
-**Tracking:** Repetitive distance sets
+### Parachuting
+**Tracking:** Repetitive Distance Sets
 
-Glide with parachute for Y meters.
+Glide with parachute for Y meters. Tracks distance traveled while parachuting is active.
 
 ```lua copy
 {
@@ -355,13 +363,13 @@ Glide with parachute for Y meters.
     description = 'Parachute for 2000 meters',
     count = 1,
     data = {
-        distance = 2000  -- meters
+        distance = 2000  -- Meters
     }
 }
 ```
 
 **Data Fields:**
-- `distance` (number) - Meters to glide per set
+- `distance` (Number) - Meters to glide per set
 
 ---
 
@@ -369,10 +377,10 @@ Glide with parachute for Y meters.
 
 Combat-related quest activities.
 
-### aiming
-**Tracking:** Repetitive time sets
+### Aiming
+**Tracking:** Repetitive Time Sets
 
-Aim down sights for Y seconds per set.
+Aim down sights for Y seconds per set. The player must be actively aiming with a weapon.
 
 ```lua copy
 {
@@ -382,22 +390,22 @@ Aim down sights for Y seconds per set.
     description = 'Aim with a weapon for 10 seconds (Repeat 5 times)',
     count = 5,
     data = {
-        weapon = 'weapon_pistol',  -- optional: specific weapon
+        weapon = 'weapon_pistol',  -- Optional: Specific weapon
         seconds = 10
     }
 }
 ```
 
 **Data Fields:**
-- `seconds` (number) - Seconds to aim per set
-- `weapon` (string, optional) - Specific weapon hash/name
+- `seconds` (Number) - Seconds to aim per set
+- `weapon` (String, Optional) - Specific weapon hash/name to track. If not specified, any weapon counts.
 
 ---
 
-### reloading
-**Tracking:** Each reload counts
+### Reloading
+**Tracking:** Each Reload Counts
 
-Reload a weapon X times.
+Reload a weapon X times. Each reload action increments progress by 1.
 
 ```lua copy
 {
@@ -407,20 +415,20 @@ Reload a weapon X times.
     description = 'Reload your weapon 10 times',
     count = 10,
     data = {
-        weapon = 'weapon_pistol'  -- optional: specific weapon
+        weapon = 'weapon_pistol'  -- Optional: Specific weapon
     }
 }
 ```
 
 **Data Fields:**
-- `weapon` (string, optional) - Specific weapon hash/name
+- `weapon` (String, Optional) - Specific weapon hash/name to track. If not specified, any weapon counts.
 
 ---
 
-### melee
-**Tracking:** Each melee hit counts
+### Melee
+**Tracking:** Each Melee Hit Counts
 
-Engage in melee combat X times.
+Engage in melee combat X times. Each successful melee hit increments progress by 1.
 
 ```lua copy
 {
@@ -441,10 +449,10 @@ Engage in melee combat X times.
 
 Location and exploration-based quests.
 
-### reach_zone
-**Tracking:** One-shot completion
+### Reach Zone
+**Tracking:** One-Shot Completion
 
-Arrive at a specific location.
+Arrive at a specific location. Quest completes when the player enters the defined radius around the target coordinates.
 
 ```lua copy
 {
@@ -455,21 +463,21 @@ Arrive at a specific location.
     count = 1,
     data = {
         coords = vector3(3430.0, 5178.0, 7.0),
-        radius = 50.0  -- detection radius in meters
+        radius = 50.0  -- Detection radius in meters
     }
 }
 ```
 
 **Data Fields:**
-- `coords` (vector3) - Target coordinates
-- `radius` (number) - Detection radius in meters
+- `coords` (Vector3) - Target coordinates (X, Y, Z)
+- `radius` (Number) - Detection radius in meters from the target coordinates
 
 ---
 
-### find_object
-**Tracking:** Proximity to object model
+### Find Object
+**Tracking:** Proximity to Object Model
 
-Find a specific object/prop model.
+Find a specific object/prop model. Quest completes when the player gets within the specified radius of the object.
 
 ```lua copy
 {
@@ -481,22 +489,22 @@ Find a specific object/prop model.
     data = {
         model = 'prop_box_wood02a_pu',
         radius = 5.0,
-        minutes = 0  -- optional: time to stay near object
+        minutes = 0  -- Optional: Time to stay near object
     }
 }
 ```
 
 **Data Fields:**
-- `model` (string) - Object model hash/name
-- `radius` (number) - Detection radius in meters
-- `minutes` (number, optional) - Time to stay near object
+- `model` (String) - Object model hash/name to find
+- `radius` (Number) - Detection radius in meters from the object
+- `minutes` (Number, Optional) - Time in minutes the player must stay near the object. If 0 or not specified, instant completion on arrival.
 
 ---
 
-### find_ped
-**Tracking:** Proximity to ped model
+### Find Ped
+**Tracking:** Proximity to Ped Model
 
-Find a specific NPC/ped model.
+Find a specific NPC/ped model. Quest completes when the player gets within the specified radius of the NPC.
 
 ```lua copy
 {
@@ -508,15 +516,15 @@ Find a specific NPC/ped model.
     data = {
         model = 'a_m_y_business_01',
         radius = 3.0,
-        minutes = 0  -- optional: time to stay near ped
+        minutes = 0  -- Optional: Time to stay near ped
     }
 }
 ```
 
 **Data Fields:**
-- `model` (string) - Ped model hash/name
-- `radius` (number) - Detection radius in meters
-- `minutes` (number, optional) - Time to stay near ped
+- `model` (String) - Ped model hash/name to find
+- `radius` (Number) - Detection radius in meters from the ped
+- `minutes` (Number, Optional) - Time in minutes the player must stay near the ped. If 0 or not specified, instant completion on arrival.
 
 ---
 
@@ -525,7 +533,7 @@ Find a specific NPC/ped model.
 ### Client Side
 
 #### GetPlayerProgress
-Get current player's progression data.
+Get current player's progression data including level, XP, coins, and active quests.
 
 ```lua copy
 local progress = exports['prism_reward']:GetPlayerProgress()
@@ -534,15 +542,15 @@ print(progress.level, progress.xp, progress.coins)
 
 **Returns:**
 - `table` - Player progression data
-  - `level` (number) - Current level
-  - `xp` (number) - Current experience points
-  - `coins` (number) - Current coins
-  - `quests` (table) - Active quest progress
+  - `level` (Number) - Current level
+  - `xp` (Number) - Current experience points
+  - `coins` (Number) - Current coins
+  - `quests` (Table) - Active quest progress
 
 ---
 
 #### GetActiveQuests
-Get list of player's active quests.
+Get list of player's active quests with their current progress.
 
 ```lua copy
 local quests = exports['prism_reward']:GetActiveQuests()
@@ -552,71 +560,71 @@ end
 ```
 
 **Returns:**
-- `table` - Array of active quests
+- `table` - Array of active quests with progress information
 
 ---
 
 #### IsQuestActive
-Check if a specific quest is active.
+Check if a specific quest is currently active for the player.
 
 ```lua copy
 local isActive = exports['prism_reward']:IsQuestActive('prism:driving:basic')
 ```
 
 **Parameters:**
-- `questId` (string) - Quest identifier
+- `questId` (String) - Quest identifier to check
 
 **Returns:**
-- `boolean` - Whether quest is active
+- `boolean` - Whether the quest is currently active
 
 ---
 
 ### Server Side
 
 #### AddPlayerXP
-Add XP to a player.
+Add experience points to a player. Can trigger level-up if enough XP is accumulated.
 
 ```lua copy
 exports['prism_reward']:AddPlayerXP(source, 100)
 ```
 
 **Parameters:**
-- `source` (number) - Player server ID
-- `amount` (number) - XP amount to add
+- `source` (Number) - Player server ID
+- `amount` (Number) - XP amount to add
 
 ---
 
 #### AddPlayerCoins
-Add coins to a player.
+Add coins to a player's balance.
 
 ```lua copy
 exports['prism_reward']:AddPlayerCoins(source, 50)
 ```
 
 **Parameters:**
-- `source` (number) - Player server ID
-- `amount` (number) - Coins to add
+- `source` (Number) - Player server ID
+- `amount` (Number) - Coins to add
 
 ---
 
 #### RemovePlayerCoins
-Remove coins from a player.
+Remove coins from a player's balance. Returns false if the player doesn't have enough coins.
 
 ```lua copy
 local success = exports['prism_reward']:RemovePlayerCoins(source, 100)
 ```
 
 **Parameters:**
-- `source` (number) - Player server ID
-- `amount` (number) - Coins to remove
+- `source` (Number) - Player server ID
+- `amount` (Number) - Coins to remove
 
 **Returns:**
-- `boolean` - Whether removal was successful
+- `boolean` - Whether removal was successful (false if insufficient coins)
 
 ---
 
 #### GetPlayerData
-Get a player's complete progression data.
+Get a player's complete progression data including identifier, level, XP, and coins.
 
 ```lua copy
 local data = exports['prism_reward']:GetPlayerData(source)
@@ -624,27 +632,27 @@ print(data.identifier, data.level, data.xp, data.coins)
 ```
 
 **Parameters:**
-- `source` (number) - Player server ID
+- `source` (Number) - Player server ID
 
 **Returns:**
 - `table` - Player data
-  - `identifier` (string) - Player identifier
-  - `level` (number) - Current level
-  - `xp` (number) - Experience points
-  - `coins` (number) - Coins balance
+  - `identifier` (String) - Player identifier
+  - `level` (Number) - Current level
+  - `xp` (Number) - Experience points
+  - `coins` (Number) - Coins balance
 
 ---
 
 #### CompleteQuest
-Manually complete a quest for a player.
+Manually complete a quest for a player, bypassing normal progression. Useful for admin commands or special events.
 
 ```lua copy
 exports['prism_reward']:CompleteQuest(source, 'prism:driving:basic')
 ```
 
 **Parameters:**
-- `source` (number) - Player server ID
-- `questId` (string) - Quest identifier
+- `source` (Number) - Player server ID
+- `questId` (String) - Quest identifier to complete
 
 ---
 
@@ -653,7 +661,7 @@ exports['prism_reward']:CompleteQuest(source, 'prism:driving:basic')
 ### Client Side Events
 
 #### prism_reward:client:QuestComplete
-Triggered when a player completes a quest.
+Triggered when a player completes a quest. Provides quest data including rewards.
 
 ```lua copy
 AddEventHandler('prism_reward:client:QuestComplete', function(questData)
@@ -662,10 +670,13 @@ AddEventHandler('prism_reward:client:QuestComplete', function(questData)
 end)
 ```
 
+**Parameters:**
+- `questData` (Table) - Quest information including name and rewards
+
 ---
 
 #### prism_reward:client:LevelUp
-Triggered when a player levels up.
+Triggered when a player levels up. Receives the new level as a parameter.
 
 ```lua copy
 AddEventHandler('prism_reward:client:LevelUp', function(newLevel)
@@ -673,12 +684,15 @@ AddEventHandler('prism_reward:client:LevelUp', function(newLevel)
 end)
 ```
 
+**Parameters:**
+- `newLevel` (Number) - The new level reached
+
 ---
 
 ### Server Side Events
 
 #### prism_reward:server:PlayerLoaded
-Triggered when a player's reward data is loaded.
+Triggered when a player's reward data is loaded from the database. Useful for initialization scripts.
 
 ```lua copy
 AddEventHandler('prism_reward:server:PlayerLoaded', function(source, playerData)
@@ -686,11 +700,17 @@ AddEventHandler('prism_reward:server:PlayerLoaded', function(source, playerData)
 end)
 ```
 
+**Parameters:**
+- `source` (Number) - Player server ID
+- `playerData` (Table) - Player's progression data
+
 ---
 
 ## 💡 Integration Examples
 
 ### Custom Quest Trigger
+
+Trigger custom quest progress from your own scripts. Useful for integrating with other resources.
 
 ```lua copy
 -- Trigger custom quest progress from your scripts
@@ -701,7 +721,11 @@ TriggerServerEvent('prism_reward:server:UpdateQuestProgress', {
 })
 ```
 
+---
+
 ### Level-Based Permissions
+
+Grant permissions or access based on player reward level. Perfect for progression-locked content.
 
 ```lua copy
 -- Grant permissions based on reward level
@@ -711,7 +735,11 @@ if playerData.level >= 10 then
 end
 ```
 
+---
+
 ### Economy Integration
+
+Use coins as a secondary currency in your economy system.
 
 ```lua copy
 -- Use coins as secondary currency

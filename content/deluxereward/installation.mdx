@@ -56,17 +56,19 @@ ServerConfig = {
 
 ### 5. Configure Profile Pictures
 
-Edit `server/serverConfig.lua` and add your Discord webhooks:
-
+If you select `mugshot64`, ensure the resource name matches your installation.
 ```lua copy
-ServerConfig = {
-    Webhooks = {
-        QuestComplete = 'YOUR_WEBHOOK_URL',
-        LevelUp = 'YOUR_WEBHOOK_URL',
-        PurchaseLog = 'YOUR_WEBHOOK_URL',
-        TebexRedeem = 'YOUR_WEBHOOK_URL'
-    }
-}
+    AvatarImage = {
+        enabled = true,
+        type = 'mugshot64', -- 'steam', 'discord', 'mugshot64', or 'default'
+        mugshotResourceName = 'MugShotBase64'
+    },
+```
+
+If you select `discord` or `steam`, you need to configure the API in `server/serverConfig.lua`
+```lua copy
+    SteamApiKey = "YOUR_STEAM_API_KEY_HERE",
+    DiscordBotToken = "YOUR_DISCORD_BOT_TOKEN_HERE",
 ```
 
 ### 6. Restart Server
