@@ -35,6 +35,25 @@ Config.InteractionDistance = 2.0
 Config.Debug = false
 ```
 
+## Language Configuration
+
+To set the language for the billing system, add the following convar to your server configuration file (`server.cfg`):
+
+```bash copy
+setr billing:locale "en"
+```
+
+<Callout type="info">
+  Available language codes depend on your installed locale files. Common options include:
+  - `en` - English
+  - `es` - Spanish
+  - `fr` - French
+  - `de` - German
+  - `pt` - Portuguese
+</Callout>
+
+The locale setting will automatically apply to all billing UI elements and text.
+
 ## Tax Configuration
 
 ```lua copy
